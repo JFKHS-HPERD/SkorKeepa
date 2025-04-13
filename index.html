@@ -62,7 +62,13 @@
   </div>
 
   <div class="timer">
-    Timer: <input type="text" class="editable" id="game-timer" value="20:00">
+    Timer: <span id="game-timer">20:00</span><br>
+    Set Duration (MM:SS): <input type="text" id="timer-input" value="20:00">
+    <br>
+    <button onclick="setTimerDuration()">Set</button>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="pauseTimer()">Pause</button>
+    <button onclick="resetTimer()">Reset</button>
   </div>
 
   <div class="downs">
@@ -80,6 +86,8 @@
     };
 
     let currentDown = 1;
+    let timerInterval;
+    let timerSeconds = 20 * 60; // default 20 minutes
 
     function updateScore(team, amount) {
       scores[team] += amount;
@@ -98,6 +106,54 @@
       currentDown = 1;
       document.getElementById("downs").textContent = currentDown;
     }
+
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function updateTimerDisplay() {
+      document.getElementById("game-timer").textContent = formatTime(timerSeconds);
+    }
+
+    function setTimerDuration() {
+      const input = document.getElementById("timer-input").value;
+      const parts = input.split(":");
+      if (parts.length === 2) {
+        const mins = parseInt(parts[0], 10);
+        const secs = parseInt(parts[1], 10);
+        if (!isNaN(mins) && !isNaN(secs)) {
+          timerSeconds = mins * 60 + secs;
+          updateTimerDisplay();
+        }
+      }
+    }
+
+    function startTimer() {
+      if (timerInterval) return;
+      timerInterval = setInterval(() => {
+        if (timerSeconds > 0) {
+          timerSeconds--;
+          updateTimerDisplay();
+        } else {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+
+    function resetTimer() {
+      pauseTimer();
+      setTimerDuration();
+    }
+
+    updateTimerDisplay();
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
