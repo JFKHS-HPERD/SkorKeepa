@@ -1,6 +1,6 @@
 // service-worker.js
 
-const CACHE_NAME = 'flag-football-score-app-v1';
+const CACHE_NAME = 'jfkhs-score-app-v1';
 const urlsToCache = [
   '/',
   '/index.html',
