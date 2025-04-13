@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="manifest" href="manifest.json" />
+  <title>Flag Football Scorekeeper</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+    }
+    .team {
+      margin: 20px;
+    }
+    .score {
+      font-size: 48px;
+    }
+    button {
+      font-size: 24px;
+      margin: 5px;
+      padding: 10px 20px;
+    }
+    input[type="text"] {
+      font-size: 24px;
+      text-align: center;
+    }
+    .timer, .downs {
+      margin-top: 30px;
+      font-size: 24px;
+    }
+    .editable {
+      border: none;
+      background: none;
+      font-size: 24px;
+      text-align: center;
+      width: 60px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Flag Football Scorekeeper</h1>
+
+  <div class="team">
+    <input type="text" id="team1-name" value="Team A">
+    <div class="score" id="team1-score">0</div>
+    <button onclick="updateScore('team1', 1)">+</button>
+    <button onclick="updateScore('team1', -1)">-</button>
+  </div>
+
+  <div class="team">
+    <input type="text" id="team2-name" value="Team B">
+    <div class="score" id="team2-score">0</div>
+    <button onclick="updateScore('team2', 1)">+</button>
+    <button onclick="updateScore('team2', -1)">-</button>
+  </div>
+
+  <div class="timer">
+    Timer: <input type="text" class="editable" id="game-timer" value="20:00">
+  </div>
+
+  <div class="downs">
+    Downs: <span id="downs">1</span>
+    <br />
+    <button onclick="changeDown(1)">+ Down</button>
+    <button onclick="changeDown(-1)">- Down</button>
+    <button onclick="resetDowns()">Reset Downs</button>
+  </div>
+
+  <script>
+    let scores = {
+      team1: 0,
+      team2: 0
+    };
+
+    let currentDown = 1;
+
+    function updateScore(team, amount) {
+      scores[team] += amount;
+      if (scores[team] < 0) scores[team] = 0;
+      document.getElementById(`${team}-score`).textContent = scores[team];
+    }
+
+    function changeDown(amount) {
+      currentDown += amount;
+      if (currentDown < 1) currentDown = 1;
+      if (currentDown > 4) currentDown = 4;
+      document.getElementById("downs").textContent = currentDown;
+    }
+
+    function resetDowns() {
+      currentDown = 1;
+      document.getElementById("downs").textContent = currentDown;
+    }
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js').then(
+          registration => console.log('SW registered: ', registration),
+          err => console.log('SW registration failed: ', err)
+        );
+      });
+    }
+  </script>
+</body>
+
+</html>
