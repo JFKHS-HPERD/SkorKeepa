@@ -5,13 +5,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="manifest" href="manifest.json" />
-  <title>Flag Football Scorekeeper</title>
+  <title>JFKHS Scorekeeper</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background-color: #f0f8ff;
+      background-color: #121212;
+      color: #f0f0f0;
       margin: 0;
       padding: 20px;
     }
@@ -25,10 +26,23 @@
       font-size: 24px;
       margin: 5px;
       padding: 10px 20px;
+      background-color: #1f1f1f;
+      color: #f0f0f0;
+      border: 1px solid #444;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #333;
     }
     input[type="text"] {
       font-size: 24px;
       text-align: center;
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+      border: 1px solid #444;
+      border-radius: 4px;
+      padding: 5px;
     }
     .timer, .downs {
       margin-top: 30px;
@@ -40,12 +54,13 @@
       font-size: 24px;
       text-align: center;
       width: 60px;
+      color: #f0f0f0;
     }
   </style>
 </head>
 
 <body>
-  <h1>Flag Football Scorekeeper</h1>
+  <h1>JFKHS Scorekeeper</h1>
 
   <div class="team">
     <input type="text" id="team1-name" value="Team A">
