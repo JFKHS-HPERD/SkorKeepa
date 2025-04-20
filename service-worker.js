@@ -1,6 +1,6 @@
 // service-worker.js
 
-const CACHE_NAME = 'jfkhs-score-app-v1.1';
+const CACHE_NAME = 'jfkhs-score-app-v1.0';
 const urlsToCache = [
   '/',
   '/index.html',
