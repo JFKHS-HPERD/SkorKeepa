@@ -16,7 +16,10 @@
       margin: 0;
       padding: 20px;
     }
-    .team {
+    .team1 {
+      margin: 20px;
+    }
+    .team2 {
       margin: 20px;
     }
     .score {
@@ -67,23 +70,23 @@
   <img src="BANNER.png" alt="Islanders">
   <h1>JFKHS Scorekeeper</h1>
 
-  <div class="team">
-    <input type="text" id="team1-name" value="Team A">
+  <div class="team1">
+    <input type="text" id="team1-name" value="Team 1" style="background-color:Gold">
     <div class="score" id="team1-score">0</div>
-    <button onclick="updateScore('team1', 1)">+</button>
     <button onclick="updateScore('team1', -1)">-</button>
+    <button onclick="updateScore('team1', 1)">+</button>
   </div>
 
-  <div class="team">
-    <input type="text" id="team2-name" value="Team B">
+  <div class="team2">
+    <input type="text" id="team2-name" value="Team 2" style="background-color:Green">
     <div class="score" id="team2-score">0</div>
-    <button onclick="updateScore('team2', 1)">+</button>
     <button onclick="updateScore('team2', -1)">-</button>
+    <button onclick="updateScore('team2', 1)">+</button>
   </div>
 
   <div class="timer">
-    <h1 style="color:Tomato;"><span id="game-timer">20:00</span></h1><br>
-    <input type="text" id="timer-input" value="20:00">
+    <h1 style="color:Tomato;"><span id="game-timer">30:00</span></h1><br>
+    <input type="text" id="timer-input" value="30:00">
     <br>
     <button onclick="setTimerDuration()">Set</button>
     <button onclick="startTimer()">Start</button>
@@ -94,8 +97,8 @@
   <div class="downs">
     Downs: <span id="downs">1</span>
     <br/>
-    <button onclick="changeDown(1)">+</button>
     <button onclick="changeDown(-1)">-</button><br>
+    <button onclick="changeDown(1)">+</button>
     <button onclick="resetDowns()">Reset Downs</button>
   </div>
 
@@ -107,7 +110,7 @@
 
     let currentDown = 1;
     let timerInterval;
-    let timerSeconds = 20 * 60; // default 20 minutes
+    let timerSeconds = 30 * 60; // default 30 minutes
 
     function updateScore(team, amount) {
       scores[team] += amount;
