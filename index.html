@@ -16,10 +16,7 @@
       margin: 0;
       padding: 20px;
     }
-    .team1 {
-      margin: 20px;
-    }
-    .team2 {
+    .team {
       margin: 20px;
     }
     .score {
@@ -70,14 +67,14 @@
   <img src="BANNER.png" alt="Islanders">
   <h1>JFKHS Scorekeeper</h1>
 
-  <div class="team1">
-    <input type="text" id="team1-name" value="Team 1" style="background-color:Gold">
+  <div class="team">
+    <input type="text" id="team1-name" value="Team 1" style="color:Black; background-color:Gold">
     <div class="score" id="team1-score">0</div>
     <button onclick="updateScore('team1', -1)">-</button>
     <button onclick="updateScore('team1', 1)">+</button>
   </div>
 
-  <div class="team2">
+  <div class="team">
     <input type="text" id="team2-name" value="Team 2" style="background-color:Green">
     <div class="score" id="team2-score">0</div>
     <button onclick="updateScore('team2', -1)">-</button>
